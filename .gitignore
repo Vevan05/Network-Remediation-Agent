@@ -42,7 +42,7 @@ yarn-error.log*
 # settings.json is shared and committed; settings.local.json is one person's
 # permission list. (Without this rule it is only caught by a *global* gitignore,
 # so it leaks on any machine that does not have one.)
-.claude/settings.local.json
+.claude
 
 # ---------------------------------------------------------------------------
 # Runtime state
