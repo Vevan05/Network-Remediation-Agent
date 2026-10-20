@@ -1,0 +1,1 @@
+{"permissions": {"allow": ["Bash(curl *)", "Bash(docker info)", "Bash(docker network inspect *)"]}}

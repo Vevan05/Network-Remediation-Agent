@@ -1,0 +1,32 @@
+name: netrem
+
+# One image, three instances. Container names MUST equal the service names
+# (service-a/b/c): faults.py and executor.py address containers by that name.
+x-svc: &svc
+  build:
+    context: ./services/svc
+    dockerfile: Dockerfile
+    network: host
+  restart: "no"          # a crashed container must stay down until remediated
+  cap_add: [NET_ADMIN]   # only needed for the optional tc/netem stretch goal
+  networks: [testbed]
+
+services:
+  service-a:
+    <<: *svc
+    container_name: service-a
+    environment: { SERVICE_NAME: service-a }
+    ports: ["8001:8000"]
+  service-b:
+    <<: *svc
+    container_name: service-b
+    environment: { SERVICE_NAME: service-b }
+    ports: ["8002:8000"]
+  service-c:
+    <<: *svc
+    container_name: service-c
+    environment: { SERVICE_NAME: service-c }
+    ports: ["8003:8000"]
+
+networks:
+  testbed: {}

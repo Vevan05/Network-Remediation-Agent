@@ -1,0 +1,17 @@
+# Fault scenarios. Each is injected, diagnosed ONCE, then replayed under all three
+# policy modes (paired design). Keep the set small until the pipeline works end to end.
+# 4 fault types x 3 targets = 12 scenarios; with --repeats 5 that is 60 diagnoses
+# and 180 policy runs (cheap with the heuristic agent, ~60 LLM calls with the real one).
+scenarios:
+  - {id: s01, fault: CRASH,        target: service-a}
+  - {id: s02, fault: CRASH,        target: service-b}
+  - {id: s03, fault: CRASH,        target: service-c}
+  - {id: s04, fault: HIGH_LATENCY, target: service-a}
+  - {id: s05, fault: HIGH_LATENCY, target: service-b}
+  - {id: s06, fault: HIGH_LATENCY, target: service-c}
+  - {id: s07, fault: PACKET_LOSS,  target: service-a}
+  - {id: s08, fault: PACKET_LOSS,  target: service-b}
+  - {id: s09, fault: PACKET_LOSS,  target: service-c}
+  - {id: s10, fault: CONFIG_DRIFT, target: service-a}
+  - {id: s11, fault: CONFIG_DRIFT, target: service-b}
+  - {id: s12, fault: CONFIG_DRIFT, target: service-c}

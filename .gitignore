@@ -1,0 +1,86 @@
+# ---------------------------------------------------------------------------
+# Secrets
+# ---------------------------------------------------------------------------
+# .env holds the live GEMINI_API_KEY / ANTHROPIC_API_KEY. Never commit it.
+.env
+.env.*
+!.env.example
+
+# ---------------------------------------------------------------------------
+# Python
+# ---------------------------------------------------------------------------
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+.eggs/
+build/
+dist/
+.venv/
+venv/
+env/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+.coverage.*
+coverage.xml
+htmlcov/
+
+# ---------------------------------------------------------------------------
+# Node / frontend
+# ---------------------------------------------------------------------------
+node_modules/
+ui/dist/
+ui/.vite/
+npm-debug.log*
+yarn-error.log*
+
+# ---------------------------------------------------------------------------
+# Local tooling config
+# ---------------------------------------------------------------------------
+# settings.json is shared and committed; settings.local.json is one person's
+# permission list. (Without this rule it is only caught by a *global* gitignore,
+# so it leaks on any machine that does not have one.)
+.claude/settings.local.json
+
+# ---------------------------------------------------------------------------
+# Runtime state
+# ---------------------------------------------------------------------------
+# SQLite database of pending approval plans and the UI event stream.
+results/*.db
+results/*.db-journal
+results/*.db-wal
+results/*.db-shm
+
+# ---------------------------------------------------------------------------
+# Scratch files and editor noise
+# ---------------------------------------------------------------------------
+*.log
+*.tmp
+*.swp
+*~
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+
+# ---------------------------------------------------------------------------
+# Superseded experiment archives
+# ---------------------------------------------------------------------------
+# Pre-fix runs kept locally for comparison only; the published results are the
+# runs_*.jsonl files directly under results/.
+results/_pre_pairing_fix/
+
+# ---------------------------------------------------------------------------
+# DELIBERATELY NOT IGNORED
+# ---------------------------------------------------------------------------
+# results/*.jsonl   - the raw run records. They are the evidence for every
+#                     number in README.md, and eval/audit.py, eval/sweep.py and
+#                     eval/report.py read them, so a clone must contain them for
+#                     any claim to be checkable.
+# results/figs/*.png - the paper's figures (~360 KB), regenerable with
+#                     `make figs` but committed so the README renders them.
+# results/*.csv     - the sweep and sensitivity outputs, derived from the above.
+
+IMPLEMENTATION_GUIDE.md
